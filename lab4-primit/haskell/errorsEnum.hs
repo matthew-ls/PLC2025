@@ -5,9 +5,9 @@ import System.IO (hSetBuffering, stdout, BufferMode(..))
 main =
     do
     initialiseIO
-    putStrLn ("known errors = " ++ show allErrors)
+    putStrLn ("known errors = " ++ show allErrors) -- convert enumerated value (symbol) to string
     error <- getElement "error"
-    putStrLn (show error ++ " results in: " ++ show (error2Result error))
+    putStrLn (show error ++ " results in: " ++ show (error2Result error)) -- convert enumerated value (symbol) to string
     
 initialiseIO =
     do
@@ -34,6 +34,25 @@ error2Result FP_Rounding = ABitDifferent
 error2Result FP_Overflow = Infinity
 error2Result FP_Underflow = Zero
 error2Result Int_Overflow = VeryDifferent
+
+
+
+putStrLn ("known results = " ++ show allResults)
+result <- getElement "result"
+putStrLn (show result ++ " results from: " ++ show (result2Error result))
+
+allResults :: [Result] −− ie it is a list of PL elements
+allResults = [minBound .. maxBound]
+
+result2Error ABitDifferent = FP_Rounding
+result2Error Infinity = FP_Overflow
+result2Error Zero = FP_Underflow
+result2Error VeryDifferent = Int_Overflow
+
+
+
+
+
 
 -- The code below should not be changed and does not need to be fully understood.
 

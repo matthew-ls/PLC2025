@@ -59,11 +59,40 @@ public class ErrorsEnum
         System.out.print("Known errors = ");
         for (Error e : EnumSet.allOf(Error.class)) 
         {
-            System.out.print(e + " ");
+            System.out.print(e + " "); //convert enumerated value (symbol) to string
         }
         System.out.println();
         
         Error e = getEnumElement("error", Error.class);
-        System.out.println(e + " results in: " + error2Result(e));
+        System.out.println(e + " results in: " + error2Result(e)); //convert enumerated value (symbol) to string
     }
 }
+
+
+
+public class ErrorsEnumSolution {
+    private static Error result2Error(Result e) {
+        Error error = null;
+
+        case A_BIT_DIFFERENT:
+            error = Error.FP_ROUNDING;
+        case INFINITY:
+            error = Error.FP_OVERFLOW;
+        case ZERO:
+            error = Error.FP_UNDERFLOW;
+        case VERY_DIFFERENT:
+            error = Error.INT_OVERFLOW;
+        return error;
+
+        System.out.print("Known results = ");
+        for (Result r : EnumSet.allOf(Result.class))
+
+        System.out.print(r + " ");
+
+        Result r = getEnumElement("result", Result.class);
+        System.out.println(r + " results from: " + result2Error(r))
+    }
+}
+
+
+
